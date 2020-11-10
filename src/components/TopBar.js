@@ -4,6 +4,7 @@
 // npm install --save-dev @iconify/react @iconify-icons/simple-icons
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import MuiLink from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import SvgIcon from '@material-ui/core/SvgIcon';
@@ -14,7 +15,7 @@ import Link from '../Link'
 function VercelIcon(props) {
     return (
       <SvgIcon {...props}>
-        <path d="M24 22.525H0l12-21.05 12 21.05z"/>
+        <path d="M24 22.525H0l12-21.05 12 21.05z" fill="#fff"/>
       </SvgIcon>
     );
   }
