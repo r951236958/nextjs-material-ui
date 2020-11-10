@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography'
 import React from 'react'
 import Copyright from './Copyright'
 
+
 const useStyles = makeStyles((theme) => ({
   footer: {
     borderTop: `1px solid ${theme.palette.divider}`,

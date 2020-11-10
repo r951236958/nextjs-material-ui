@@ -1,11 +1,23 @@
-import AppBar from '@material-ui/core/AppBar'
-import Button from '@material-ui/core/Button'
-import MuiLink from '@material-ui/core/Link'
-import { makeStyles } from '@material-ui/core/styles'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
+
 //import React, { useEffect, useState } from 'react'
 //import netlifyAuth from '../netlifyAuth.js'
+// npm install --save-dev @iconify/react @iconify-icons/simple-icons
+import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
+import MuiLink from '@material-ui/core/Link';
+import { makeStyles } from '@material-ui/core/styles';
+import SvgIcon from '@material-ui/core/SvgIcon';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Link from '../Link'
+
+function VercelIcon(props) {
+    return (
+      <SvgIcon {...props}>
+        <path d="M24 22.525H0l12-21.05 12 21.05z"/>
+      </SvgIcon>
+    );
+  }
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -53,13 +65,23 @@ export default function TopBar() {
       className={classes.appBar}
     >
       <Toolbar className={classes.toolbar}>
+      <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" className={classes.title}>
+            News
+          </Typography>
         <Typography
           variant="h6"
           color="inherit"
           noWrap
           className={classes.toolbarTitle}
         >
-          Company name
+        <VercelIcon />
+        <Link href="https://vercel.com/" color="textPrimary">
+        Vercel
+        </Link>
+          
         </Typography>
         <nav>
           <MuiLink

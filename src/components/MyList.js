@@ -5,6 +5,7 @@ import {
     ListItemIcon, ListItemText
 } from '@material-ui/core'
 import React from 'react'
+import Icon from '@material-ui/core/Icon';
 
 
 export default function MyLink() {
@@ -13,7 +14,8 @@ export default function MyLink() {
       <List className="menulist">
         <ListItem button>
           <ListItemIcon>
-            <i className="material-icons">g_translate</i>
+            
+            <Icon>g_translate</Icon>
           </ListItemIcon>
           <Link
             color="textPrimary"
@@ -25,7 +27,7 @@ export default function MyLink() {
         <Divider />
         <ListItem button>
           <ListItemIcon>
-            <i className="material-icons">today</i>
+            <Icon>today</Icon>
           </ListItemIcon>
           <Link
             color="textPrimary"
@@ -37,7 +39,7 @@ export default function MyLink() {
         <Divider />
         <ListItem button>
           <ListItemIcon>
-            <i className="material-icons">history_edu</i>
+            <Icon>history_edu</Icon>
           </ListItemIcon>
           <Link
             color="textPrimary"
@@ -49,7 +51,7 @@ export default function MyLink() {
         <Divider />
         <ListItem button>
           <ListItemIcon>
-            <i className="material-icons">calculate</i>
+            <Icon>calculate</Icon>
           </ListItemIcon>
           <Link
             color="textPrimary"
@@ -61,7 +63,7 @@ export default function MyLink() {
         <Divider />
         <ListItem button>
           <ListItemIcon>
-            <i className="material-icons">filter_alt</i>
+            <Icon>filter_alt</Icon>
           </ListItemIcon>
           <Link
             color="textPrimary"
@@ -73,7 +75,7 @@ export default function MyLink() {
         <Divider />
         <ListItem button>
           <ListItemIcon>
-            <i className="material-icons">source</i>
+            <Icon>source</Icon>
           </ListItemIcon>
           <Link
             color="textPrimary"
@@ -85,7 +87,7 @@ export default function MyLink() {
         <Divider />
         <ListItem button>
           <ListItemIcon>
-            <i className="material-icons">folder_shared</i>
+            <Icon>folder_shared</Icon>
           </ListItemIcon>
 
           <Link
@@ -98,7 +100,7 @@ export default function MyLink() {
         <Divider />
         <ListItem button>
           <ListItemIcon>
-            <i className="material-icons">folder_shared </i>
+            <Icon>folder_shared </Icon>
           </ListItemIcon>
 
           <Link
