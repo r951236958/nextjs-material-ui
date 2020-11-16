@@ -2522,3 +2522,11 @@ i.large {
 .collection-item span.badge {
   margin-top: calc(.75rem - 11px)
 }
+
+.proTip {
+  margin: 48px 0px 24px;
+}
+.lightBulb {
+  vertical-align: middle;
+  margin-right: 8px;
+}

@@ -1,6 +1,6 @@
-import { ServerStyleSheets } from '@material-ui/core/styles'
-import Document, { Head, Html, Main, NextScript } from 'next/document'
 import React from 'react'
+import Document, { Html, Head, Main, NextScript } from 'next/document'
+import { ServerStyleSheets } from '@material-ui/core/styles'
 import theme from '../src/theme'
 
 export default class MyDocument extends Document {
@@ -16,6 +16,10 @@ export default class MyDocument extends Document {
           />
           <link rel="manifest" href="/favicon/manifest.json"></link>
           <link rel="shortcut icon" href="/favicon/favicon.ico"></link>
+          <script
+            defer
+            src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"
+          ></script>
         </Head>
         <body>
           <Main />

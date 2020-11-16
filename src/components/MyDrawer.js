@@ -38,6 +38,8 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   appBar: {
+    backgroundColor: theme.palette.background.paper,
+    color: theme.palette.text.primary,
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth
@@ -94,7 +96,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-function ResponsiveDrawer(props) {
+function MyDrawer(props) {
   const { window } = props
   const classes = useStyles()
   const theme = useTheme()
@@ -318,4 +320,4 @@ function ResponsiveDrawer(props) {
   )
 }
 
-export default ResponsiveDrawer
+export default MyDrawer
