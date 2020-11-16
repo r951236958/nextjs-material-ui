@@ -323,6 +323,7 @@ export default function PrimarySearchAppBar() {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
+      <Toolbar id="back-to-top-anchor" />
     </div>
   )
 }

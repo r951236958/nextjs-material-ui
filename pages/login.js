@@ -2,17 +2,17 @@ import Accordion from '@material-ui/core/Accordion'
 import AccordionDetails from '@material-ui/core/AccordionDetails'
 import AccordionSummary from '@material-ui/core/AccordionSummary'
 import Box from '@material-ui/core/Box'
+import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
 import SvgIcon from '@material-ui/core/SvgIcon'
 import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import React from 'react'
-import LinkList from '../src/components/LinkList'
+import MyList from '../src/components/MyList'
 //import TopBar from '../src/components/TopBar'
 //import ButtonAppBar from '../src/components/ButtonAppBar'
 import PrimarySearchAppBar from '../src/components/PrimarySearchAppBar'
 import Copyright from '../src/Copyright'
-import Link from '../src/Link'
 import ProTip from '../src/ProTip'
 import styles from '../styles/Home.module.css'
 
@@ -34,7 +34,7 @@ export default function Index() {
       
         <Container maxWidth="md">
           <h1 className={styles.title}>
-            <a href="https://nextjs.org">Next.js</a> example
+            This is Login Page.
           </h1>
 
           <p className={styles.description}>
@@ -43,9 +43,9 @@ export default function Index() {
           </p>
 
           <Box className={styles.center} my={4}>
-            <Link href="/about" color="secondary">
-              Go to the about page
-            </Link>
+            <Button variant="outlined" href="/" color="secondary">
+              Go to Index
+            </Button>
           </Box>
 
           <Container maxWidth="xs">
@@ -58,7 +58,7 @@ export default function Index() {
                 <Typography className={styles.subheader}>常用連結</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <LinkList />
+                <MyList />
               </AccordionDetails>
             </Accordion>
           </Container>
