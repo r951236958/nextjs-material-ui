@@ -5,25 +5,25 @@ const theme = createMuiTheme({
   palette: {
     type: 'dark',
     primary: {
-      main: '#d81b60'
+      main: '#d81b60',
     },
     secondary: {
-      main: '#ffeb3b'
+      main: '#ffeb3b',
     },
     error: {
       light: '#e57373',
       main: '#f44336',
-      dark: '#d32f2f'
+      dark: '#d32f2f',
     },
     warning: {
-      main: '#ff9800'
+      main: '#ff9800',
     },
     info: {
-      main: '#2196f3'
+      main: '#2196f3',
     },
     success: {
-      main: '#4caf50'
-    }
+      main: '#4caf50',
+    },
   },
   typography: {
     fontFamily: [
@@ -36,9 +36,9 @@ const theme = createMuiTheme({
       'sans-serif',
       '"Apple Color Emoji"',
       '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"'
-    ].join(',')
-  }
+      '"Segoe UI Symbol"',
+    ].join(','),
+  },
 })
 
 export default theme

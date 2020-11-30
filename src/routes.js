@@ -1,24 +1,24 @@
 //import HomeChild from '../pages/HomeChild'
-import Icon from '@material-ui/core/Icon';
-import React from 'react';
+import Icon from '@material-ui/core/Icon'
+import React from 'react'
 //import Root from './App'
 //import About from '../pages/About';
-import About from '../pages/about';
-import Books from '../pages/Books';
-import Color from '../pages/Color';
+import About from '../pages/about'
+//import Books from '../pages/books'
+//import Color from '../pages/color'
 //import Dashboard from '../pages/Dashboard';
-import Desktop from '../pages/Desktop';
-import Devices from '../pages/Devices';
-import Home from '../pages/Home';
-import Laptop from '../pages/Laptop';
-import Mobile from '../pages/Mobile';
-import TestPage from '../pages/TestPage';
+//import Desktop from '../pages/desktop'
+//import Devices from '../pages/devices'
+import Home from '../pages/home'
+//import Laptop from '../pages/laptop'
+//import Mobile from '../pages/mobile'
+//import TestPage from '../pages/testpage'
 //import NotFound from '../pages/NotFound'
 //import Page1 from '../pages/Page-1';
 //import Page2 from '../pages/Page-2';
 //import Page3 from '../pages/Page-3';
 //import AboutRoute from '../pages/AboutRoute';
-import Topics from '../pages/Topics';
+//import Topics from '../pages/topics'
 //import { NavLink } from 'react-router-dom'
 
 const routes = [
@@ -39,22 +39,22 @@ const routes = [
     icon: <Icon>help</Icon>,
     component: About,
   },
-  {
-    path: '/topics',
-    key: 'TOPICS',
-    sidebar: 'Topics',
-    breadcrumbName: 'Topics',
-    icon: <Icon>topics</Icon>,
-    component: Topics,
-  },
-  {
-    path: '/test',
-    key: 'TESTPAGE',
-    sidebar: 'Test Page',
-    breadcrumbName: 'TestPage',
-    icon: <Icon>hot_tub</Icon>,
-    component: TestPage,
-  },
+  //{
+  //  path: '/topics',
+  //  key: 'TOPICS',
+  //  sidebar: 'Topics',
+  //  breadcrumbName: 'Topics',
+  //  icon: <Icon>topics</Icon>,
+  //  component: Topics,
+  //},
+  //{
+  //  path: '/test',
+  //  key: 'TESTPAGE',
+  //  sidebar: 'Test Page',
+  //  breadcrumbName: 'TestPage',
+  //  icon: <Icon>hot_tub</Icon>,
+  //  component: TestPage,
+  //},
   //{
   //  path: '/route',
   //  key: 'ROUTE',
@@ -63,14 +63,14 @@ const routes = [
   //  icon: <Icon>alt_route</Icon>,
   //  component: AboutRoute,
   //},
-  {
-    path: '/color',
-    key: 'COLOR',
-    sidebar: 'Color',
-    breadcrumbName: 'Color',
-    icon: <Icon>palette</Icon>,
-    component: Color,
-  },
+  //{
+  //  path: '/color',
+  //  key: 'COLOR',
+  //  sidebar: 'Color',
+  //  breadcrumbName: 'Color',
+  //  icon: <Icon>palette</Icon>,
+  //  component: Color,
+  //},
   //{
   //  path: '/page1',
   //  key: 'PAGE_1',
@@ -103,47 +103,47 @@ const routes = [
   //  icon: <Icon>insert_chart</Icon>,
   //  component: Dashboard,
   //},
-  {
-    path: '/devices',
-    key: 'DEVICES',
-    component: Devices,
-    sidebar: 'Devices',
-    breadcrumbName: 'Devices',
-    icon: <Icon>devices_other</Icon>,
-    routes: [
-      {
-        path: '/devices/mobile',
-        key: 'DEVICES_MOBILE',
-        sidebar: 'Mobile Phone',
-        breadcrumbName: 'Mobile Phone',
-        icon: <Icon>phone_iphone</Icon>,
-        component: Mobile,
-      },
-      {
-        path: '/devices/desktop',
-        key: 'DEVICES_DESKTOP',
-        sidebar: 'Desktop PC',
-        breadcrumbName: 'Desktop PC',
-        icon: <Icon>desktop_mac</Icon>,
-        component: Desktop,
-      },
-      {
-        path: '/devices/laptop',
-        key: 'DEVICES_LAPTOP',
-        sidebar: 'Laptop',
-        breadcrumbName: 'Laptop',
-        icon: <Icon>laptop_mac</Icon>,
-        component: Laptop,
-      },
-    ],
-  },
-  {
-    path: '/books',
-    key: 'BOOKS',
-    sidebar: 'Books',
-    icon: <Icon>menu_book</Icon>,
-    component: Books,
-  },
-];
+  //{
+  //  path: '/devices',
+  //  key: 'DEVICES',
+  //  component: Devices,
+  //  sidebar: 'Devices',
+  //  breadcrumbName: 'Devices',
+  //  icon: <Icon>devices_other</Icon>,
+  //  routes: [
+  //    {
+  //      path: '/devices/mobile',
+  //      key: 'DEVICES_MOBILE',
+  //      sidebar: 'Mobile Phone',
+  //      breadcrumbName: 'Mobile Phone',
+  //      icon: <Icon>phone_iphone</Icon>,
+  //      component: Mobile,
+  //    },
+  //    {
+  //      path: '/devices/desktop',
+  //      key: 'DEVICES_DESKTOP',
+  //      sidebar: 'Desktop PC',
+  //      breadcrumbName: 'Desktop PC',
+  //      icon: <Icon>desktop_mac</Icon>,
+  //      component: Desktop,
+  //    },
+  //    {
+  //      path: '/devices/laptop',
+  //      key: 'DEVICES_LAPTOP',
+  //      sidebar: 'Laptop',
+  //      breadcrumbName: 'Laptop',
+  //      icon: <Icon>laptop_mac</Icon>,
+  //      component: Laptop,
+  //    },
+  //  ],
+  //},
+  //{
+  //  path: '/books',
+  //  key: 'BOOKS',
+  //  sidebar: 'Books',
+  //  icon: <Icon>menu_book</Icon>,
+  //  component: Books,
+  //},
+]
 
-export default routes;
+export default routes

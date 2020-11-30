@@ -1,38 +1,38 @@
-import AppBar from '@material-ui/core/AppBar';
-import Badge from '@material-ui/core/Badge';
-import Button from '@material-ui/core/Button';
-import Collapse from '@material-ui/core/Collapse';
-import Container from '@material-ui/core/Container';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
-import Icon from '@material-ui/core/Icon';
-import IconButton from '@material-ui/core/IconButton';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import { fade, makeStyles, useTheme } from '@material-ui/core/styles';
-import Toolbar from '@material-ui/core/Toolbar';
+import AppBar from '@material-ui/core/AppBar'
+import Badge from '@material-ui/core/Badge'
+import Button from '@material-ui/core/Button'
+import Collapse from '@material-ui/core/Collapse'
+import Container from '@material-ui/core/Container'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Divider from '@material-ui/core/Divider'
+import Drawer from '@material-ui/core/Drawer'
+import Icon from '@material-ui/core/Icon'
+import IconButton from '@material-ui/core/IconButton'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import ListItemText from '@material-ui/core/ListItemText'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
+import { fade, makeStyles, useTheme } from '@material-ui/core/styles'
+import Toolbar from '@material-ui/core/Toolbar'
 //import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 //import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 //import MailIcon from '@material-ui/icons/Mail';
 //import MenuIcon from '@material-ui/icons/Menu';
 //import InboxIcon from '@material-ui/icons/MoveToInbox';
-import clsx from 'clsx';
-import React from 'react';
-import { renderRoutes } from 'react-router-config';
-import MDCIcon30 from '../icons/MDCIcon30';
-import MuiIcon30 from '../icons/MuiIcon30';
+import clsx from 'clsx'
+import React from 'react'
+import { renderRoutes } from 'react-router-config'
+import MDCIcon30 from '../icons/MDCIcon30'
+import MuiIcon30 from '../icons/MuiIcon30'
 //import { NavLink } from 'react-router-dom';
-import Link from '../Link';
-import routes from '../routes';
-import MenuListLink from './MenuListLink';
-import NavItemLink from './NavItemLink';
+import Link from '../Link'
+import routes from '../routes'
+import ListItemLink from './ListItemLink'
+import NavItemLink from './NavItemLink'
 
-const drawerWidth = 240;
+const drawerWidth = 240
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -170,48 +170,49 @@ const useStyles = makeStyles((theme) => ({
     width: 40,
     height: 40,
   },
-}));
+}))
 
 const DevicesItem = [
   {
     path: '/devices/mobile',
-icon: <Icon>phone_iphone</Icon>,
-primary: 'Mobile',},
+    icon: <Icon>phone_iphone</Icon>,
+    primary: 'Mobile',
+  },
 
-{path: '/devices/desktop',
-icon: <Icon>desktop_mac</Icon>,
-primary: 'Desktop',},
+  {
+    path: '/devices/desktop',
+    icon: <Icon>desktop_mac</Icon>,
+    primary: 'Desktop',
+  },
 
-{path: '/devices/laptop',
-icon: <Icon>laptop_mac</Icon>,
-primary: 'Laptop',},
+  { path: '/devices/laptop', icon: <Icon>laptop_mac</Icon>, primary: 'Laptop' },
 ]
 
-const DevicesItemList = DevicesItem.map(({ path, primary, icon }, key)  => 
-<MenuListLink to={path} primary={primary} icon={icon} key={key.toString()} />
-)
+const DevicesItemList = DevicesItem.map(({ path, primary, icon }, key) => (
+  <ListItemLink
+    href={path}
+    primary={primary}
+    icon={icon}
+    key={key.toString()}
+  />
+))
 
 export default function DrawerLeft() {
-  const classes = useStyles();
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(true);
+  const classes = useStyles()
+  const theme = useTheme()
+  const [open, setOpen] = React.useState(true)
 
   const handleDrawerOpen = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const handleDrawerClose = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   const routeDrawerComponents = routes.map(({ path, sidebar, icon }, key) => (
-    <MenuListLink
-      to={path}
-      primary={sidebar}
-      icon={icon}
-      key={key}
-    />
-  ));
+    <ListItemLink href={path} primary={sidebar} icon={icon} key={key} />
+  ))
 
   const drawer = (
     <div>
@@ -219,17 +220,20 @@ export default function DrawerLeft() {
       <List>{routeDrawerComponents}</List>
       <Divider />
       <List>
-        <MenuListLink
-          to="/devices"
+        <ListItemLink
+          href="/devices"
           primary="Devices"
           icon={<Icon>devices_other</Icon>}
           open={open}
-          
         />
-        <Collapse component="li" in={open} timeout="auto" unmountOnExit className={classes.nested}>
-          <List disablePadding>
-            {DevicesItemList}
-          </List>
+        <Collapse
+          component="li"
+          in={open}
+          timeout="auto"
+          unmountOnExit
+          className={classes.nested}
+        >
+          <List disablePadding>{DevicesItemList}</List>
         </Collapse>
       </List>
       <Divider />
@@ -289,32 +293,32 @@ export default function DrawerLeft() {
         ))}
       </List>
     </div>
-  );
+  )
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState(null)
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
 
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const isMenuOpen = Boolean(anchorEl)
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
 
   const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
 
   const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
+    setMobileMoreAnchorEl(null)
+  }
 
   const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
+    setAnchorEl(null)
+    handleMobileMenuClose()
+  }
 
   const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
+    setMobileMoreAnchorEl(event.currentTarget)
+  }
 
-  const menuId = 'primary-search-account-menu';
+  const menuId = 'primary-search-account-menu'
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -328,9 +332,9 @@ export default function DrawerLeft() {
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
-  );
+  )
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
+  const mobileMenuId = 'primary-search-account-menu-mobile'
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
@@ -370,7 +374,7 @@ export default function DrawerLeft() {
         <p>Profile</p>
       </MenuItem>
     </Menu>
-  );
+  )
 
   return (
     <div className={classes.root}>
@@ -394,55 +398,58 @@ export default function DrawerLeft() {
           <Button
             onClick={handleDrawerOpen}
             color="inherit"
-            to="/"
+            href="/"
             component={Link}
             className={classes.logoButton}
-            startIcon={<img alt="logo" src="/logo.svg" className={classes.logo} />} >
+            startIcon={
+              <img alt="logo" src="/logo.svg" className={classes.logo} />
+            }
+          >
             React
           </Button>
           <div className={classes.grow} />
-            <div className={classes.sectionDesktop}>
-              <NavItemLink to="/" primary="Home" color="inherit" />
+          <div className={classes.sectionDesktop}>
+            <NavItemLink href="/" primary="Home" color="inherit" />
 
-              <NavItemLink
-                to="/about"
-                primary="About"
-                variant="button"
-                color="inherit"
-              />
+            <NavItemLink
+              href="/about"
+              primary="About"
+              variant="button"
+              color="inherit"
+            />
 
-              <NavItemLink
-                to="/color"
-                primary="Color"
-                variant="button"
-                color="inherit"
-              />
+            <NavItemLink
+              href="/color"
+              primary="Color"
+              variant="button"
+              color="inherit"
+            />
 
-              <NavItemLink
-                to="/topics"
-                primary="Topics"
-                variant="button"
-                color="inherit"
-              />
+            <NavItemLink
+              href="/topics"
+              primary="Topics"
+              variant="button"
+              color="inherit"
+            />
 
-              <NavItemLink
-                to="/devices"
-                primary="Devices"
-                variant="button"
-                color="inherit"
-              />
-            </div>
-            <div className={classes.sectionMobile}>
-              <IconButton
-                aria-label="show more"
-                aria-controls={mobileMenuId}
-                aria-haspopup="true"
-                onClick={handleMobileMenuOpen}
-                color="inherit"
-              >
-                <Icon>more_vert</Icon>
-              </IconButton>
-            </div>
+            <NavItemLink
+              href="/devices"
+              primary="Devices"
+              variant="button"
+              color="inherit"
+            />
+          </div>
+          <div className={classes.sectionMobile}>
+            <IconButton
+              aria-label="show more"
+              aria-controls={mobileMenuId}
+              aria-haspopup="true"
+              onClick={handleMobileMenuOpen}
+              color="inherit"
+            >
+              <Icon>more_vert</Icon>
+            </IconButton>
+          </div>
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
@@ -458,19 +465,26 @@ export default function DrawerLeft() {
       >
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <Icon>chevron_left</Icon> : <Icon>chevron_right</Icon>}
+            {theme.direction === 'ltr' ? (
+              <Icon>chevron_left</Icon>
+            ) : (
+              <Icon>chevron_right</Icon>
+            )}
           </IconButton>
         </div>
         <Divider />
         {drawer}
       </Drawer>
-      <Container maxWidth="md" component="main" className={clsx(classes.content, {
+      <Container
+        maxWidth="md"
+        component="main"
+        className={clsx(classes.content, {
           [classes.contentShift]: open,
-        })}>
+        })}
+      >
         <Toolbar />
         {renderRoutes(routes)}
-        </Container>
-      
+      </Container>
     </div>
-  );
+  )
 }

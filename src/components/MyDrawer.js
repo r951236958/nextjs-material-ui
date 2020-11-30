@@ -3,9 +3,9 @@ import Badge from '@material-ui/core/Badge'
 import Collapse from '@material-ui/core/Collapse'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Divider from '@material-ui/core/Divider'
+import Icon from '@material-ui/core/Icon'
 import Drawer from '@material-ui/core/Drawer'
 import Hidden from '@material-ui/core/Hidden'
-import Icon from '@material-ui/core/Icon'
 import IconButton from '@material-ui/core/IconButton'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
@@ -16,20 +16,21 @@ import MenuItem from '@material-ui/core/MenuItem'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import AccountCircle from '@material-ui/icons/AccountCircle'
-import HelpIcon from '@material-ui/icons/Help'
-import HomeIcon from '@material-ui/icons/Home'
-import MailIcon from '@material-ui/icons/Mail'
-import MenuIcon from '@material-ui/icons/Menu'
-import MoreIcon from '@material-ui/icons/MoreVert'
-import InboxIcon from '@material-ui/icons/MoveToInbox'
-import NotificationsIcon from '@material-ui/icons/Notifications'
+//import AccountCircle from '@material-ui/icons/AccountCircle'
+//import HelpIcon from '@material-ui/icons/Help'
+//import HomeIcon from '@material-ui/icons/Home'
+//import MailIcon from '@material-ui/icons/Mail'
+//import MenuIcon from '@material-ui/icons/Menu'
+//import MoreIcon from '@material-ui/icons/MoreVert'
+//import InboxIcon from '@material-ui/icons/MoveToInbox'
+//import NotificationsIcon from '@material-ui/icons/Notifications'
 import React from 'react'
-import { MemoryRouter, Route } from 'react-router'
+import { Link as RouterLink } from 'react-router-dom'
+import { MemoryRouter as Router, Route } from 'react-router'
 import routes from '../routes'
 import ListItemLink from './ListItemLink'
-import MenuListLink from './MenuListLink'
 import theme from '../theme'
+import Link from '../Link'
 
 const drawerWidth = 240
 
@@ -123,8 +124,41 @@ const DevicesItem = [
   },
 ]
 
+const NavMenuItem = [
+  {
+    path: '/',
+    icon: <Icon>home</Icon>,
+    primary: 'Home',
+  },
+  {
+    path: '/about',
+    icon: <Icon>help</Icon>,
+    primary: 'About',
+  },
+  {
+    path: '/devices',
+    icon: <Icon>devices_other</Icon>,
+    primary: 'Devices',
+  },
+  {
+    path: '/color',
+    icon: <Icon>palette</Icon>,
+    primary: 'Color',
+  },
+  {
+    path: '/topics',
+    icon: <Icon>topics</Icon>,
+    primary: 'Topics',
+  },
+]
+
 const DevicesItemList = DevicesItem.map(({ path, primary, icon }, key) => (
-  <ListItemLink to={path} primary={primary} icon={icon} key={key.toString()} />
+  <ListItemLink
+    href={path}
+    primary={primary}
+    icon={icon}
+    key={key.toString()}
+  />
 ))
 
 function MyDrawer(props) {
@@ -137,7 +171,7 @@ function MyDrawer(props) {
   }
 
   const routeDrawerComponents = routes.map(({ path, sidebar, icon }, key) => (
-    <MenuListLink to={path} primary={sidebar} icon={icon} key={key} />
+    <ListItemLink href={path} primary={sidebar} icon={icon} key={key} />
   ))
 
   const [open, setOpen] = React.useState(true)
@@ -150,14 +184,22 @@ function MyDrawer(props) {
     setOpen(false)
   }
 
+  const navMenuComponents = NavMenuItem.map(
+    ({ path, primary, ...other }, key) => (
+      <ListItemLink href={path} primary={primary} {...other} key={key} />
+    )
+  )
+
+  const { icon, href, primary, ...other } = props
+
   const drawer = (
-    <MemoryRouter initialEntries={['/inbox']} initialIndex={0}>
+    <Router initialEntries={['/inbox']} initialIndex={0}>
       <div className={classes.toolbar} />
       <Divider />
       <Route>
         <List>
-          <MenuListLink
-            to="/devices"
+          <ListItemLink
+            href="/devices"
             primary="Devices"
             icon={<Icon>devices_other</Icon>}
             open={open}
@@ -174,12 +216,16 @@ function MyDrawer(props) {
         </List>
         <Divider />
         <List>
-          {['Home', 'About', 'User'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <HomeIcon /> : <HelpIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
+          {NavMenuItem.map(({ path, primary, icon, ...other }) => (
+            <ListItem
+              button
+              key={path}
+              component={RouterLink}
+              href={path}
+              {...other}
+            >
+              {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
+              <ListItemText primary={primary} />
             </ListItem>
           ))}
         </List>
@@ -188,7 +234,11 @@ function MyDrawer(props) {
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {index % 2 === 0 ? (
+                  <Icon>move_to_inbox</Icon>
+                ) : (
+                  <Icon>mail_outline</Icon>
+                )}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
@@ -199,14 +249,18 @@ function MyDrawer(props) {
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {index % 2 === 0 ? (
+                  <Icon>move_to_inbox</Icon>
+                ) : (
+                  <Icon>mail_outline</Icon>
+                )}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
         </List>
       </Route>
-    </MemoryRouter>
+    </Router>
   )
 
   const container =
@@ -262,123 +316,102 @@ function MyDrawer(props) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
+      {navMenuComponents}
     </Menu>
   )
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            className={classes.menuButton}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Responsive drawer
-          </Typography>
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div>
-        </Toolbar>
-      </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
-      <nav className={classes.drawer} aria-label="mailbox folders">
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Hidden smUp implementation="css">
-          <Drawer
-            container={container}
-            variant="temporary"
-            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-        <Hidden xsDown implementation="css">
-          <Drawer
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            variant="permanent"
-            open
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-      </nav>
-    </div>
+    <Router>
+      <Route>
+        <div className={classes.root}>
+          <CssBaseline />
+          <AppBar position="fixed" className={classes.appBar}>
+            <Toolbar>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="start"
+                onClick={handleDrawerToggle}
+                className={classes.menuButton}
+              >
+                <Icon>munu</Icon>
+              </IconButton>
+              <Typography className={classes.title} variant="h6" noWrap>
+                Responsive drawer
+              </Typography>
+              <div className={classes.grow} />
+              <div className={classes.sectionDesktop}>
+                <Link href="about" compoent="button">
+                  About
+                </Link>
+                <IconButton
+                  aria-label="show 17 new notifications"
+                  color="inherit"
+                >
+                  <Badge badgeContent={17} color="secondary">
+                    <Icon>notifications</Icon>
+                  </Badge>
+                </IconButton>
+                <IconButton
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                  onClick={handleProfileMenuOpen}
+                  color="inherit"
+                >
+                  <Icon>account_circle</Icon>
+                </IconButton>
+              </div>
+              <div className={classes.sectionMobile}>
+                <IconButton
+                  aria-label="show more"
+                  aria-controls={mobileMenuId}
+                  aria-haspopup="true"
+                  onClick={handleMobileMenuOpen}
+                  color="inherit"
+                >
+                  <Icon>more_vert</Icon>
+                </IconButton>
+              </div>
+            </Toolbar>
+          </AppBar>
+          {renderMobileMenu}
+          {renderMenu}
+          <nav className={classes.drawer} aria-label="mailbox folders">
+            {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+            <Hidden smUp implementation="css">
+              <Drawer
+                container={container}
+                variant="temporary"
+                anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+                open={mobileOpen}
+                onClose={handleDrawerToggle}
+                classes={{
+                  paper: classes.drawerPaper,
+                }}
+                ModalProps={{
+                  keepMounted: true, // Better open performance on mobile.
+                }}
+              >
+                {drawer}
+              </Drawer>
+            </Hidden>
+            <Hidden xsDown implementation="css">
+              <Drawer
+                classes={{
+                  paper: classes.drawerPaper,
+                }}
+                variant="permanent"
+                open
+              >
+                {drawer}
+              </Drawer>
+            </Hidden>
+          </nav>
+        </div>
+      </Route>
+    </Router>
   )
 }
 
