@@ -1,9 +1,11 @@
 import AppBar from '@material-ui/core/AppBar'
 import Badge from '@material-ui/core/Badge'
+import Collapse from '@material-ui/core/Collapse'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Divider from '@material-ui/core/Divider'
 import Drawer from '@material-ui/core/Drawer'
 import Hidden from '@material-ui/core/Hidden'
+import Icon from '@material-ui/core/Icon'
 import IconButton from '@material-ui/core/IconButton'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
@@ -22,8 +24,11 @@ import MenuIcon from '@material-ui/icons/Menu'
 import MoreIcon from '@material-ui/icons/MoreVert'
 import InboxIcon from '@material-ui/icons/MoveToInbox'
 import NotificationsIcon from '@material-ui/icons/Notifications'
-import ListItemLink from './ListItemLink'
 import React from 'react'
+import { MemoryRouter, Route } from 'react-router'
+import routes from '../routes'
+import ListItemLink from './ListItemLink'
+import MenuListLink from './MenuListLink'
 
 const drawerWidth = 240
 
@@ -93,8 +98,33 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       display: 'none'
     }
-  }
+  },
+  nested: {
+    paddingLeft: theme.spacing(4),
+  },
 }))
+
+const DevicesItem = [
+  {
+    path: '/devices/mobile',
+    icon: <Icon>phone_iphone</Icon>,
+    primary: 'Mobile',
+  },
+  {
+    path: '/devices/desktop',
+    icon: <Icon>desktop_mac</Icon>,
+    primary: 'Desktop',
+  },
+  {
+    path: '/devices/laptop',
+    icon: <Icon>laptop_mac</Icon>,
+    primary: 'Laptop',
+  },
+]
+
+const DevicesItemList = DevicesItem.map(({ path, primary, icon }, key)  => 
+<ListItemLink to={path} primary={primary} icon={icon} key={key.toString()} />
+)
 
 function MyDrawer(props) {
   const { window } = props
@@ -106,11 +136,44 @@ function MyDrawer(props) {
     setMobileOpen(!mobileOpen)
   }
 
+  const routeDrawerComponents = routes.map(({ path, sidebar, icon }, key) => (
+    <MenuListLink
+      to={path}
+      primary={sidebar}
+      icon={icon}
+      key={key}
+    />
+  ));
+
+  const [open, setOpen] = React.useState(true);
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+  
   const drawer = (
-    <div>
+    <MemoryRouter initialEntries={['/inbox']} initialIndex={0}>
       <div className={classes.toolbar} />
       <Divider />
-      <ListItemLink />
+      <Route>
+      <List>
+        <MenuListLink
+          to="/devices"
+          primary="Devices"
+          icon={<Icon>devices_other</Icon>}
+          open={open}
+          
+        />
+        <Collapse component="li" in={open} timeout="auto" unmountOnExit className={classes.nested}>
+          <List disablePadding>
+            {DevicesItemList}
+          </List>
+        </Collapse>
+      </List>
       <Divider />
       <List>
         {['Home', 'About', 'User'].map((text, index) => (
@@ -144,7 +207,8 @@ function MyDrawer(props) {
           </ListItem>
         ))}
       </List>
-    </div>
+      </Route>
+    </MemoryRouter>
   )
 
   const container =

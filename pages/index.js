@@ -1,15 +1,14 @@
-import React from 'react'
-import Container from '@material-ui/core/Container'
-import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
+import Container from '@material-ui/core/Container'
 import Toolbar from '@material-ui/core/Toolbar'
-import ProTip from '../src/ProTip'
-import Link from '../src/Link'
-import Copyright from '../src/Copyright'
-import Footer from '../src/components/Footer'
-import MyDrawer from '../src/components/MyDrawer'
+import Typography from '@material-ui/core/Typography'
+import React from 'react'
 import Colors from '../src/components/Colors'
+//import DrawerLeft from '../src/components/DrawerLeft'
+import Footer from '../src/components/Footer'
 import LinkList from '../src/components/LinkList'
+import MyDrawer from '../src/components/MyDrawer'
+import Link from '../src/Link'
 //import Dashboard from '@components/Dashboard';
 
 export default function Index() {
