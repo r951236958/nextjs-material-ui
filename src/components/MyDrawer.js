@@ -29,53 +29,54 @@ import { MemoryRouter, Route } from 'react-router'
 import routes from '../routes'
 import ListItemLink from './ListItemLink'
 import MenuListLink from './MenuListLink'
+import theme from '../theme'
 
 const drawerWidth = 240
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex'
+    display: 'flex',
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
       width: drawerWidth,
-      flexShrink: 0
-    }
+      flexShrink: 0,
+    },
   },
   appBar: {
     backgroundColor: theme.palette.background.paper,
     color: theme.palette.text.primary,
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth
-    }
+      marginLeft: drawerWidth,
+    },
   },
   menuButton: {
     marginRight: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
-      display: 'none'
-    }
+      display: 'none',
+    },
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
-    width: drawerWidth
+    width: drawerWidth,
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3)
+    padding: theme.spacing(3),
   },
   grow: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   title: {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
-      display: 'block'
-    }
+      display: 'block',
+    },
   },
   inputRoot: {
-    color: 'inherit'
+    color: 'inherit',
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -84,20 +85,20 @@ const useStyles = makeStyles((theme) => ({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      width: '20ch'
-    }
+      width: '20ch',
+    },
   },
   sectionDesktop: {
     display: 'none',
     [theme.breakpoints.up('md')]: {
-      display: 'flex'
-    }
+      display: 'flex',
+    },
   },
   sectionMobile: {
     display: 'flex',
     [theme.breakpoints.up('md')]: {
-      display: 'none'
-    }
+      display: 'none',
+    },
   },
   nested: {
     paddingLeft: theme.spacing(4),
@@ -122,14 +123,13 @@ const DevicesItem = [
   },
 ]
 
-const DevicesItemList = DevicesItem.map(({ path, primary, icon }, key)  => 
-<ListItemLink to={path} primary={primary} icon={icon} key={key.toString()} />
-)
+const DevicesItemList = DevicesItem.map(({ path, primary, icon }, key) => (
+  <ListItemLink to={path} primary={primary} icon={icon} key={key.toString()} />
+))
 
 function MyDrawer(props) {
   const { window } = props
   const classes = useStyles()
-  const theme = useTheme()
   const [mobileOpen, setMobileOpen] = React.useState(false)
 
   const handleDrawerToggle = () => {
@@ -137,76 +137,74 @@ function MyDrawer(props) {
   }
 
   const routeDrawerComponents = routes.map(({ path, sidebar, icon }, key) => (
-    <MenuListLink
-      to={path}
-      primary={sidebar}
-      icon={icon}
-      key={key}
-    />
-  ));
+    <MenuListLink to={path} primary={sidebar} icon={icon} key={key} />
+  ))
 
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(true)
 
   const handleDrawerOpen = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const handleDrawerClose = () => {
-    setOpen(false);
-  };
-  
+    setOpen(false)
+  }
+
   const drawer = (
     <MemoryRouter initialEntries={['/inbox']} initialIndex={0}>
       <div className={classes.toolbar} />
       <Divider />
       <Route>
-      <List>
-        <MenuListLink
-          to="/devices"
-          primary="Devices"
-          icon={<Icon>devices_other</Icon>}
-          open={open}
-          
-        />
-        <Collapse component="li" in={open} timeout="auto" unmountOnExit className={classes.nested}>
-          <List disablePadding>
-            {DevicesItemList}
-          </List>
-        </Collapse>
-      </List>
-      <Divider />
-      <List>
-        {['Home', 'About', 'User'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <HomeIcon /> : <HelpIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+        <List>
+          <MenuListLink
+            to="/devices"
+            primary="Devices"
+            icon={<Icon>devices_other</Icon>}
+            open={open}
+          />
+          <Collapse
+            component="li"
+            in={open}
+            timeout="auto"
+            unmountOnExit
+            className={classes.nested}
+          >
+            <List disablePadding>{DevicesItemList}</List>
+          </Collapse>
+        </List>
+        <Divider />
+        <List>
+          {['Home', 'About', 'User'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <HomeIcon /> : <HelpIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <List>
+          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <List>
+          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
       </Route>
     </MemoryRouter>
   )
@@ -359,10 +357,10 @@ function MyDrawer(props) {
             open={mobileOpen}
             onClose={handleDrawerToggle}
             classes={{
-              paper: classes.drawerPaper
+              paper: classes.drawerPaper,
             }}
             ModalProps={{
-              keepMounted: true // Better open performance on mobile.
+              keepMounted: true, // Better open performance on mobile.
             }}
           >
             {drawer}
@@ -371,7 +369,7 @@ function MyDrawer(props) {
         <Hidden xsDown implementation="css">
           <Drawer
             classes={{
-              paper: classes.drawerPaper
+              paper: classes.drawerPaper,
             }}
             variant="permanent"
             open
